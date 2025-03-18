@@ -1,4 +1,4 @@
-package com.example.user_service.jpa
+package com.example.user_service.repository
 
 import com.example.user_service.domain.User
 import com.example.user_service.dto.ResponseUser
