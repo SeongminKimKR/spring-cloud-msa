@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="discoveryservice" target="21" />
+      <module name="discoveryservice.main" target="21" />
+      <module name="discoveryservice.test" target="21" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
