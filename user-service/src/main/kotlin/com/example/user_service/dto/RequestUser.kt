@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.Min
 import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.Size
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 
 
 data class RequestUser(
@@ -21,9 +22,10 @@ data class RequestUser(
     @field:Size(min = 8, message = "Password must be equal or greater than 8 characters")
     val pwd: String,
 ) {
-    fun toDomain() = User (
+    fun toDomain(passwordEncoder: BCryptPasswordEncoder) = User (
         email = email,
         name = name,
         pwd = pwd,
+        encryptedPwd = passwordEncoder.encode(pwd)
     )
 }

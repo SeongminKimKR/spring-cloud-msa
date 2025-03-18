@@ -8,5 +8,5 @@ class User (
     val pwd: String,
     val userId: String = UUID.randomUUID().toString(),
     val createdAt: Date = Date(),
-    val encryptedPwd: String = "encrypted_password",
+    val encryptedPwd: String,
 )
