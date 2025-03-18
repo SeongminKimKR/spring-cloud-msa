@@ -1,7 +1,8 @@
 package com.example.user_service.service
 
-import com.example.user_service.dto.UserDto
+import com.example.user_service.dto.RequestUser
+import com.example.user_service.dto.ResponseUser
 
 interface UserService {
-    fun createUser(userDto: UserDto): UserDto
+    fun createUser(request: RequestUser): ResponseUser
 }

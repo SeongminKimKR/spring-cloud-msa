@@ -1,10 +1,9 @@
 package com.example.user_service.controller
 
-import com.example.user_service.dto.UserDto
+import com.example.user_service.dto.RequestUser
+import com.example.user_service.dto.ResponseUser
 import com.example.user_service.service.UserService
 import com.example.user_service.vo.Greeting
-import com.example.user_service.vo.RequestUser
-import com.example.user_service.vo.ResponseUser
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
@@ -30,20 +29,7 @@ class UserController(
     fun createUser(
         @RequestBody request: RequestUser
     ): ResponseEntity<ResponseUser> {
-        val dto = UserDto(
-            email = request.email,
-            name = request.name,
-            pwd = request.pwd,
-        )
-
-        val result = userService.createUser(dto)
-
-        val response = ResponseUser(
-            email = result.email,
-            name = request.name,
-            userId = result.userId
-        )
-
+        val response = userService.createUser(request)
         return ResponseEntity<ResponseUser>(response, HttpStatus.CREATED)
     }
 }
