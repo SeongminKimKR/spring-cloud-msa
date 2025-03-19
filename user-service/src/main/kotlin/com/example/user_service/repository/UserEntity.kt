@@ -1,6 +1,7 @@
 package com.example.user_service.repository
 
 import com.example.user_service.domain.User
+import com.example.user_service.dto.ResponseOrder
 import com.example.user_service.dto.ResponseUser
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
@@ -24,10 +25,11 @@ class UserEntity(
     @Column(nullable = false, unique = true)
     val encryptedPwd: String,
 ) {
-    fun toResponse() = ResponseUser (
+    fun toResponse(orders: List<ResponseOrder> = emptyList()) = ResponseUser (
         email = email,
         name = name,
         userId = userId,
+        orders = orders,
     )
 
     companion object {

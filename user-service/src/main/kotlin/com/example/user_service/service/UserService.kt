@@ -5,4 +5,8 @@ import com.example.user_service.dto.ResponseUser
 
 interface UserService {
     fun createUser(request: RequestUser): ResponseUser
+
+    fun getUserByUserId(userId: String): ResponseUser
+
+    fun getUserByAll(): List<ResponseUser>
 }

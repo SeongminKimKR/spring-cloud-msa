@@ -12,8 +12,10 @@ class SecurityConfig {
     fun filterChain(http: HttpSecurity): SecurityFilterChain = http
         .csrf { it.disable() }
         .authorizeHttpRequests {
-            it.requestMatchers("/users/**").permitAll()
+            it.requestMatchers("/user-service/users/**").permitAll()
             it.requestMatchers(PathRequest.toH2Console()).permitAll()
+            it.requestMatchers("/user-service/welcome").permitAll()
+            it.requestMatchers("/user-service/health_check").permitAll()
         }
         .headers { it.frameOptions { it.disable() } }
         .build()
