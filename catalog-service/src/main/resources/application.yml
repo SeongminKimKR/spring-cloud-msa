@@ -36,4 +36,4 @@ eureka:
 
 logging:
   level:
-    com.example.catalogservice: DEBUG
+    com.example.catalog_service: DEBUG
