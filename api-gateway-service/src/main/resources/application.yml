@@ -19,21 +19,22 @@ spring:
             baseMessage: Spring Cloud Gateway Global Filter
             preLogger: true
             postLogger: true
+        - name: CustomFilter
+        - name: LoggingFilter
+          args:
+            baseMessage: Hi, there.
+            preLogger: true
+            postLogger: true
       routes:
-        - id: user_service
+        - id: user-service
           uri: lb://USER-SERVICE
           predicates:
             - Path=/user-service/**
-        - id: catalog_service
+        - id: catalog-service
           uri: lb://CATALOG-SERVICE
           predicates:
             - Path=/catalog-service/**
-          filters:
-#            - AddRequestHeader=first-request, first-request-header2
-#            - AddResponseHeader=first-response, first-response-header2
-            - name: CustomFilter
-            - name: LoggingFilter
-              args:
-                baseMessage: Hi, there.
-                preLogger: true
-                postLogger: true
+        - id: order-service
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/order-service/**
