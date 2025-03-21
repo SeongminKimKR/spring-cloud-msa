@@ -32,6 +32,11 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 
+	//jwt
+	implementation ("io.jsonwebtoken:jjwt-api:0.12.6")
+	implementation ("io.jsonwebtoken:jjwt-impl:0.12.6")
+	implementation ("io.jsonwebtoken:jjwt-jackson:0.12.6")
+
 	//H2
 	runtimeOnly("com.h2database:h2:2.2.224")
 

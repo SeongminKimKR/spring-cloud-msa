@@ -35,6 +35,11 @@ class UserServiceImpl(
         .findAll()
         .map { it.toResponse() }
 
+    override fun getUserDetailsByEmail(email: String): ResponseUser {
+        val entity = userRepository.findByEmail(email) ?: throw UsernameNotFoundException("$email User Not Found")
+        return entity.toResponse()
+    }
+
     override fun loadUserByUsername(username: String): UserDetails {
         val entity = userRepository.findByEmail(username) ?: throw UsernameNotFoundException("$username User Not Found")
 

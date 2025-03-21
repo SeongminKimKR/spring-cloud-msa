@@ -10,4 +10,6 @@ interface UserService : UserDetailsService {
     fun getUserByUserId(userId: String): ResponseUser
 
     fun getUserByAll(): List<ResponseUser>
+
+    fun getUserDetailsByEmail(email: String): ResponseUser
 }
