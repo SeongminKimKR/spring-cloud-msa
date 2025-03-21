@@ -51,7 +51,7 @@ class AuthorizationHeaderFilter(
             Jwts.parser()
                 .verifyWith(key)
                 .build()
-                .parseSignedClaims(jwt) // ✅ 최신 방식
+                .parseSignedClaims(jwt)
                 .payload.subject
         }.getOrElse {
             return false
