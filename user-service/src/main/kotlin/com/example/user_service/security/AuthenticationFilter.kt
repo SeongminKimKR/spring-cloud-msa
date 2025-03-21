@@ -2,6 +2,7 @@ package com.example.user_service.security
 
 import com.example.user_service.dto.RequestLogin
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
@@ -15,7 +16,7 @@ class AuthenticationFilter : UsernamePasswordAuthenticationFilter(){
         response: HttpServletResponse?,
     ): Authentication {
         val credential = runCatching {
-            ObjectMapper().readValue(request.inputStream, RequestLogin::class.java)
+            jacksonObjectMapper().readValue(request.inputStream, RequestLogin::class.java)
         }.getOrElse {
             throw RuntimeException("Invalid login request", it)
         }
@@ -25,11 +26,12 @@ class AuthenticationFilter : UsernamePasswordAuthenticationFilter(){
     }
 
     override fun successfulAuthentication(
-        request: HttpServletRequest?,
-        response: HttpServletResponse?,
+        request: HttpServletRequest,
+        response: HttpServletResponse,
         chain: FilterChain?,
         authResult: Authentication?,
     ) {
-        super.successfulAuthentication(request, response, chain, authResult)
+//        response.status = HttpServletResponse.SC_OK;
+//        super.successfulAuthentication(request, response, chain, authResult)
     }
 }
