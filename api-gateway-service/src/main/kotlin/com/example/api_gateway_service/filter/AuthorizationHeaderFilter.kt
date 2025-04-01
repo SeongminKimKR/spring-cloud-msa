@@ -63,12 +63,11 @@ class AuthorizationHeaderFilter(
     private fun onError(
         exchange: ServerWebExchange,
         err: String,
-    ): Mono<Void> {
-        val response = exchange.response
-        response.setStatusCode(HttpStatus.UNAUTHORIZED)
+    ): Mono<Void> = with(exchange) {
         logger.error(err)
 
-        return response.setComplete()
+        response.setStatusCode(HttpStatus.UNAUTHORIZED)
+        response.setComplete()
     }
 
 }
