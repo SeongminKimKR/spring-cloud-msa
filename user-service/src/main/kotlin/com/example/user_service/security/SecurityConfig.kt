@@ -31,6 +31,7 @@ class SecurityConfig(
             .authorizeHttpRequests {
 //            it.requestMatchers("/user-service/users/**").permitAll()
 //                it.requestMatchers("/users", "POST").permitAll()
+                it.requestMatchers("/actuator/**").permitAll()
                 it.requestMatchers(PathRequest.toH2Console()).permitAll()
                 it.requestMatchers("/**")
                     .access(WebExpressionAuthorizationManager("hasIpAddress('192.168.219.103')"))
