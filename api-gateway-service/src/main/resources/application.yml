@@ -13,6 +13,8 @@ spring:
     name: api-gateway-service
   config:
     import: optional:configserver:http://localhost:8888 # 구성정보 설정
+  profiles:
+    active: dev
   cloud:
     gateway:
       default-filters:
