@@ -11,11 +11,9 @@ eureka:
 spring:
   application:
     name: api-gateway-service
-  cloud:
-    config:
-      name: ecommerce # yml 파일명 앞부분
   config:
     import: optional:configserver:http://localhost:8888 # 구성정보 설정
+  cloud:
     gateway:
       default-filters:
         - name: GlobalFilter
@@ -75,6 +73,12 @@ spring:
           uri: lb://ORDER-SERVICE
           predicates:
             - Path=/order-service/**
+    config:
+      name: ecommerce # yml 파일명 앞부분
+
+token:
+  secret: user_token_user_token_user_token_user_token
+
 
 management:
   endpoints:
