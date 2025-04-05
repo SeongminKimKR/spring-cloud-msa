@@ -8,5 +8,7 @@ spring:
     config:
       server:
         git:
-          uri: file:///Users/seongmin_kim/project/study/msa
+#          uri: file:///Users/seongmin_kim/project/study/msa
+          uri: https://github.com/SeongminKimKR/spring-cloud-msa.git
+          default-label: master
 
