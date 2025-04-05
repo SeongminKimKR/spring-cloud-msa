@@ -12,6 +12,10 @@ spring:
   application:
     name: api-gateway-service
   cloud:
+    config:
+      name: ecommerce # yml 파일명 앞부분
+  config:
+    import: optional:configserver:http://localhost:8888 # 구성정보 설정
     gateway:
       default-filters:
         - name: GlobalFilter
@@ -71,10 +75,6 @@ spring:
           uri: lb://ORDER-SERVICE
           predicates:
             - Path=/order-service/**
-
-token:
-  secret: user_token_user_token_user_token_user_token
-
 
 management:
   endpoints:
