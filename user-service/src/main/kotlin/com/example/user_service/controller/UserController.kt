@@ -19,12 +19,16 @@ import org.springframework.web.bind.annotation.RestController
 class UserController(
     private val greeting: Greeting,
     private val userService: UserService,
-    private val env:Environment,
+    private val env: Environment,
 ) {
 
     @GetMapping("/health_check")
-    fun status() = String.format("It's Working in User Service on PORT %s"
-        , env.getProperty("local.server.port"))
+    fun status() = "It's Working in User Service" +
+            ", port(local.server.port)=${env.getProperty("local.server.port")}" +
+            ", port(server.port)=${env.getProperty("server.port")}" +
+            ", token secret=${env.getProperty("token.secret")}" +
+            ", =token expiration time=${env.getProperty("token.expiration_time")}"
+
 
     @GetMapping("/welcome")
     fun welcome() = greeting.message
