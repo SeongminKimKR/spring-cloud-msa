@@ -33,6 +33,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.cloud:spring-cloud-starter-bus-amqp")
+	implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 
 	//jwt
