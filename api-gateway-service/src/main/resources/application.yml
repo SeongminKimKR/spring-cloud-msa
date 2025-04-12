@@ -11,6 +11,11 @@ eureka:
 spring:
   application:
     name: api-gateway-service
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
   config:
     import: optional:configserver:http://localhost:8888 # 구성정보 설정
   profiles:
@@ -86,4 +91,4 @@ management:
   endpoints:
     web:
       exposure:
-        include: refresh, health, beans, httpexchanges
+        include: refresh, health, beans, httpexchanges, busrefresh
