@@ -5,23 +5,20 @@ import com.example.user_service.dto.RequestUser
 import com.example.user_service.dto.ResponseUser
 import com.example.user_service.repository.UserEntity
 import com.example.user_service.repository.UserRepository
-import feign.FeignException
 import org.slf4j.LoggerFactory
-import org.springframework.core.env.Environment
 import org.springframework.security.core.userdetails.User
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
-import org.springframework.web.client.RestTemplate
 
 @Service
 class UserServiceImpl(
     private val userRepository: UserRepository,
     private val passwordEncoder: BCryptPasswordEncoder,
     private val orderServiceClient: OrderServiceClient,
-    private val restTemplate: RestTemplate,
-    private val env: Environment,
+//    private val restTemplate: RestTemplate,
+//    private val env: Environment,
 ) : UserService {
     private val logger = LoggerFactory.getLogger(UserServiceImpl::class.java)
 
@@ -45,12 +42,14 @@ class UserServiceImpl(
 //            object : ParameterizedTypeReference<List<ResponseOrder>>() {}
 //        ).body ?: throw IllegalArgumentException("Order is null")
 
-        val orders = try {
-            orderServiceClient.getOrders(userId)
-        } catch (e: FeignException) {
-            logger.error(e.message)
-            emptyList()
-        }
+//        val orders = try {
+//            orderServiceClient.getOrders(userId)
+//        } catch (e: FeignException) {
+//            logger.error(e.message)
+//            emptyList()
+//        }
+
+        val orders = orderServiceClient.getOrders(userId)
 
         return entity.toResponse(orders)
     }
