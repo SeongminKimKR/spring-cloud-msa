@@ -7,7 +7,7 @@ data class ResponseOrder(
     val qty: Int,
     val unitPrice: Int,
     val totalPrice: Int,
-    val createAt: Date,
+    val createdAt: Date,
     val orderId: String,
 )
 
