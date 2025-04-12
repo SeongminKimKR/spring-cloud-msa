@@ -83,8 +83,8 @@ spring:
     config:
       name: ecommerce # yml 파일명 앞부분
 
-token:
-  secret: user_token_user_token_user_token_user_token
+#token:
+#  secret: user_token_user_token_user_token_user_token
 
 
 management:
