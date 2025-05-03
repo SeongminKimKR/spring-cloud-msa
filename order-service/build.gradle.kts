@@ -35,6 +35,9 @@ dependencies {
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 	implementation("org.mariadb.jdbc:mariadb-java-client:3.3.1")
+	implementation("io.micrometer:micrometer-observation")
+	implementation("io.micrometer:micrometer-tracing-bridge-brave")
+	implementation("io.zipkin.reporter2:zipkin-reporter-brave")
 }
 
 dependencyManagement {

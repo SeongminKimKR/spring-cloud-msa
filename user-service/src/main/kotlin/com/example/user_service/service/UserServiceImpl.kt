@@ -50,12 +50,13 @@ class UserServiceImpl(
 //            logger.error(e.message)
 //            emptyList()
 //        }
-
+        logger.info("Before call orders microservice")
         val circuitBreaker = circuitBreakerFactory.create("circuitbreaker")
         val orders = circuitBreaker.run(
             { orderServiceClient.getOrders(userId) },
             { _ -> emptyList() }
         )
+        logger.info("After call orders microservice")
 //        val orders = orderServiceClient.getOrders(userId)
 
         return entity.toResponse(orders)

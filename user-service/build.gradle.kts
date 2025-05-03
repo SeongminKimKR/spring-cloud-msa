@@ -37,6 +37,10 @@ dependencies {
 	implementation("org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 
+	implementation("io.micrometer:micrometer-observation")
+	implementation("io.micrometer:micrometer-tracing-bridge-brave")
+	implementation("io.zipkin.reporter2:zipkin-reporter-brave")
+
 	//jwt
 	implementation ("io.jsonwebtoken:jjwt-api:0.12.6")
 	implementation ("io.jsonwebtoken:jjwt-impl:0.12.6")
