@@ -6,6 +6,7 @@ import com.example.user_service.dto.ResponseUser
 import com.example.user_service.repository.UserEntity
 import com.example.user_service.repository.UserRepository
 import org.slf4j.LoggerFactory
+import org.springframework.cloud.circuitbreaker.resilience4j.Resilience4JCircuitBreakerFactory
 import org.springframework.security.core.userdetails.User
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UsernameNotFoundException
@@ -17,6 +18,7 @@ class UserServiceImpl(
     private val userRepository: UserRepository,
     private val passwordEncoder: BCryptPasswordEncoder,
     private val orderServiceClient: OrderServiceClient,
+    private val circuitBreakerFactory: Resilience4JCircuitBreakerFactory,
 //    private val restTemplate: RestTemplate,
 //    private val env: Environment,
 ) : UserService {
@@ -49,7 +51,12 @@ class UserServiceImpl(
 //            emptyList()
 //        }
 
-        val orders = orderServiceClient.getOrders(userId)
+        val circuitBreaker = circuitBreakerFactory.create("circuitbreaker")
+        val orders = circuitBreaker.run(
+            { orderServiceClient.getOrders(userId) },
+            { _ -> emptyList() }
+        )
+//        val orders = orderServiceClient.getOrders(userId)
 
         return entity.toResponse(orders)
     }
