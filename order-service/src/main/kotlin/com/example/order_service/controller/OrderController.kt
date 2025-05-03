@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController
 class OrderController(
     private val orderService: OrderService,
     private val env: Environment,
-    private val kafkaProducer: KafkaProducer,
 ) {
     @GetMapping("/health_check")
     fun status() = String.format(
@@ -34,7 +33,6 @@ class OrderController(
     ): ResponseEntity<ResponseCreateOrder> {
         val response = orderService.createOrder(userId, request)
 
-        kafkaProducer.send("example-catalog-topic", request.toDomain(userId))
 
         return ResponseEntity(response, HttpStatus.CREATED)
     }

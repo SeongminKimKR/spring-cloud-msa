@@ -15,19 +15,19 @@ class KafkaProducer(
 
     fun send(
         topic: String,
-        orderDto: Order
+        order: Order
     ): Order {
         val mapper = ObjectMapper()
         val jsonInString = try {
-            mapper.writeValueAsString(orderDto)
+            mapper.writeValueAsString(order)
         } catch (ex: JsonProcessingException) {
             ex.printStackTrace()
             ""
         }
 
         kafkaTemplate.send(topic, jsonInString)
-        logger.info("Kafka Producer sent data from the Order microservice: $orderDto")
+        logger.info("Kafka Producer sent data from the Order microservice: $order")
 
-        return orderDto
+        return order
     }
 }
